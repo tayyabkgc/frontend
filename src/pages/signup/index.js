@@ -96,18 +96,18 @@ const LinkStyled = styled(Link)(({ theme }) => ({
 }));
 
 const validationSchema = Yup.object().shape({
-  // referredBy: Yup.string()
-  //   .required("Referral ID is required")
-  //   .test(
-  //     "no-leading-or-trailing-space",
-  //     "Referral ID should not contain spaces",
-  //     (value) => {
-  //       return (
-  //         !value ||
-  //         !(value.startsWith(" ") || value.endsWith(" ") || /\s/.test(value))
-  //       );
-  //     }
-  //   ),
+  referredBy: Yup.string()
+    .required("Referral ID is required")
+    .test(
+      "no-leading-or-trailing-space",
+      "Referral ID should not contain spaces",
+      (value) => {
+        return (
+          !value ||
+          !(value.startsWith(" ") || value.endsWith(" ") || /\s/.test(value))
+        );
+      }
+    ),
   name: Yup.string()
     .matches(/^[^\s].*$/, "Full Name should not start with a space")
     .max(64, "Full Name should not exceed 64 characters")
@@ -345,7 +345,7 @@ const Register = () => {
     const response = await dispatch(
       registerUser({
         ...payload,
-        // referredBy: referralDetails ? referralDetails?._id : "",
+        referredBy: referralDetails ? referralDetails?._id : "",
       })
     );
     if (response?.payload?.data?._id) {
