@@ -324,7 +324,7 @@ const Register = () => {
   const registerUserFromBackend = async (data) => {
     window.localStorage.setItem("userOTPEmail", data?.email);
     const payload = data;
-    payload.phoneNumber = countryCode + data.phoneNumber;
+    // payload.phoneNumber = countryCode + data.phoneNumber;
     const foundPendingUser = localStorage.getItem("pendingUser");
     let flag = false;
     if (foundPendingUser) {
